@@ -15,16 +15,24 @@ semifinalista(barcelona).
 
 madre(mireya, fabiola).
 madre(mireya, natalia).
+madre(maria, ariel).
 madre(fabiola, leandro).
 madre(natalia, francisco).
+
 padre(oscar, natalia).
 padre(oscar, fabiola).
 padre(ariel, leandro).
-abuelo(X,Z):-padre(X,Y), madre(Y,Z).
-abuela(X,Z):-madre(X,Y), madre(Y,Z).
+padre(carlos,ariel).
+
+abuelo(X,Z):-padre(X,Y), (madre(Y,Z);padre(Y,Z)).
+abuela(X,Z):-madre(X,Y), (madre(Y,Z);padre(Y,Z)).
+
 hermana(X,Z):-madre(Y,X), madre(Y,Z).
-primo(X,Z):-madre(C,X),madre(V,Z),hermana(C,V).
-tia(X,Z):-hermana(X,C),madre(C,Z).
+primo(X,Z):-madre(C,X), madre(V,Z), hermana(C,V).
+tia(X,Z):-primo(Y,Z), madre(X,Y).
+
+
+
 
 semifinal1(river,lanus).
 semifinal2(gremio,barcelona).
